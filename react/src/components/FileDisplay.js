@@ -71,7 +71,7 @@ class FileDisplay extends Component {
           <tr>
             <td style={{'height':'30px', 'valign':'top', 'width' : '700px'}}>
             <button className="unstyled-button" onClick={() => { this.props.downloadFile(file.path , file.filename); }}>{ file.filename }</button>
-            <a className="recents-item__heading" role="button" tabindex="0" href= {"http://localhost:8080" + file.path.replace(/,/g, '/') + file.filename} download>{ file.filename }</a> 
+   
                 
                 <svg  width="32" height="32" viewBox="0 0 32 32" className="mc-icon-star" 
                 onClick={() => { this.props.toggleStar(file.fileId); }}>
