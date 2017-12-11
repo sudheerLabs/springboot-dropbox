@@ -1,0 +1,48 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+react/node_modules
+react/nodeServer/node_modules
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+react/.DS_Store
+react/.env.local
+react/.env.development.local
+react/.env.test.local
+react/.env.production.local
+
+react/npm-debug.log*
+react/yarn-debug.log*
+react/yarn-error.log*
+
+
+springboot/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+springboot/.apt_generated
+springboot/.classpath
+springboot/.factorypath
+springboot/.project
+springboot/.settings
+springboot/.springBeans
+
+### IntelliJ IDEA ###
+springboot/.idea
+springboot/*.iws
+springboot/*.iml
+springboot/*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/

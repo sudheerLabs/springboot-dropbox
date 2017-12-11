@@ -1,0 +1,24 @@
+
+IP:130.65.159.73
+Username:student
+Password:Cmpe86754231!
+
+
+
+Profiles        
+sys_ip_members_visits 
+sys_profile_rating                
+sys_profile_views_track           
+sys_profile_voting_track
+bx_wall_repost_track
+
+you have to log in via VPN in order to ssh into the server, you can download the VPN client at http://its.sjsu.edu/services/internet-connectivity/vpn/
+
+
+Product name:HP Pavilion 14 Notebook PC 
+Product number:G6S68UA#ABA
+Serial number:5CD434028J
+BIOS (Configuration):F.09-08/04/2014 (0975100000405F10000620180)
+Keyboard revision:77.15
+Total memory:8.00 GB
+Processor name:Intel(R) Core(TM) i3-4030U CPU @ 1.90GHz
