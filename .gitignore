@@ -23,7 +23,7 @@ react/yarn-error.log*
 
 
 springboot/target/
-!.mvn/wrapper/maven-wrapper.jar
+!springboot/.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
 springboot/.apt_generated
