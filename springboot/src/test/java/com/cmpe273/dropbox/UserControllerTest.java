@@ -1,61 +1,70 @@
 package com.cmpe273.dropbox;
 
-import com.cmpe273.dropbox.controller.UserController;
+
 import com.cmpe273.dropbox.repository.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.Mockito.*;
-import org.mockito.MockitoAnnotations;
-import org.mockito.stubbing.OngoingStubbing;
-import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 import com.cmpe273.dropbox.entity.User;
 import com.cmpe273.dropbox.service.UserService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = UserController.class, secure = false)
 public class UserControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+    @TestConfiguration
+    public static class UserControllerTestContextConfig {
+        @Bean
+        public UserService fileService() {
+            return new UserService();
+        }
+    }
 
-    @InjectMocks
+    @Autowired
     private UserService userService;
 
-    @Mock
-    UserRepository userRepository;
+    @MockBean
+    private UserRepository userRepository;
+
 
     @Before
     public void setUp() throws Exception {
-        MockitoAnnotations.initMocks(this);
+        User user = new User();
+        user.setUsername("smith@com.au");
+        user.setPassword("asdf@123");
+        user.setFirstname("Steve");
+        user.setLastname("Smith");
+        List<User> users = new ArrayList<>();
+        users.add(user);
+
+        Mockito.when(userRepository.findByUsernameAndPassword("smith@com.au","551f1d70451500e9025390b180974abc64efdc2f"))
+                .thenReturn(users);
     }
 
-    String exampleUserJson = "{\"username\":\"yuvraj@bcci.tv\"," +
-            "\"password\":\"yuvi@123\"," +
-            "\"firstname\":\"Yuvraj\"," + "\"lastname\":\"Singh\",\"username\":\"yuvraj@bcci.tv }";
 
     @Test
-    public void addUser() throws Exception {
-
-        //Mockito.when(userRepository.save(any(User.class))).thenReturn(new User());
-
+    public void logInTest() throws Exception{
+        List<User> user = userService.login("smith@com.au","asdf@123");
+        assertThat(user).isNotEmpty();
+        assertThat(user.size()).isEqualTo(1);
     }
 
+    @Test
+    public void invalidLoginTest() {
+        List<User> user = userService.login("smith@com.au","steve@123");
+        assertThat(user).isEmpty();
     }
+
+}
