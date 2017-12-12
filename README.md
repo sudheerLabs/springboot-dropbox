@@ -9,3 +9,6 @@ Go to command prompt and start mysql
 mysqld
 
 Start spring boot application
+
+
+invoke http://localhost:3000 to access the application
